@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#cc0000">
+<title>Student Loan True Cost Calculator - See the Real Cost | True Interest</title>
+<meta name="description" content="Free student loan calculator. See the real cost of your loan before you borrow: monthly payment, total paid, and how much is interest. Instant estimate.">
+<meta name="keywords" content="student loan calculator, true cost of student loan, student loan interest calculator, student loan payoff calculator, how much will my student loan cost">
+<link rel="canonical" href="https://569001773-wq.github.io/true-interest/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="True Interest">
+<meta property="og:title" content="Student Loan True Cost Calculator - True Interest">
+<meta property="og:description" content="See the real cost of your student loan before you borrow. Free instant calculator.">
+<meta property="og:url" content="https://569001773-wq.github.io/true-interest/">
+<meta property="og:image" content="https://569001773-wq.github.io/true-interest/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Student Loan True Cost Calculator - True Interest">
+<meta name="twitter:description" content="See the real cost of your student loan before you borrow. Free instant calculator.">
+<meta name="twitter:image" content="https://569001773-wq.github.io/true-interest/og.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"True Interest - Student Loan True Cost Calculator","url":"https://569001773-wq.github.io/true-interest/","applicationCategory":"FinanceApplication","operatingSystem":"Web, iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free student loan calculator that shows the real cost of borrowing: monthly payment, total paid, and how much is interest."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much will my student loan really cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on your loan amount, interest rate, and repayment term. Enter them into the calculator and True Interest shows your estimated total paid and how much of it is interest."}},{"@type":"Question","name":"Is this student loan calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The web calculator is completely free. The iPhone app adds document scanning and a full report as an optional one-time purchase."}},{"@type":"Question","name":"Does it work for private and federal student loans?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works for any fixed-rate loan where you know the amount, rate, and term, private or federal."}},{"@type":"Question","name":"What does True Interest mean?","acceptedAnswer":{"@type":"Answer","text":"True Interest is the extra money you pay on top of what you borrow, the total interest over the life of the loan."}}]}</script>
+</head>
+<body><style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f5f5f5;
+    --surface-line: #e7e7e7;
+    --ink: #0a0a0a;
+    --ink-soft: #454545;
+    --ink-faint: #8a8a8a;
+    --red: #cc0000;
+    --yellow: #ffd600;
+    --field-border: #0a0a0a;
+    --shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 32px -18px rgba(0,0,0,.28);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0b0d;
+      --surface: #17171b;
+      --surface-line: #2a2a30;
+      --ink: #f4f4f5;
+      --ink-soft: #b3b3ba;
+      --ink-faint: #7d7d86;
+      --red: #ff3b30;
+      --yellow: #ffd600;
+      --field-border: #3a3a42;
+      --shadow: 0 1px 0 rgba(255,255,255,.03), 0 18px 40px -20px rgba(0,0,0,.7);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:#ffffff; --surface:#f5f5f5; --surface-line:#e7e7e7; --ink:#0a0a0a;
+    --ink-soft:#454545; --ink-faint:#8a8a8a; --red:#cc0000; --yellow:#ffd600;
+    --field-border:#0a0a0a; --shadow:0 1px 0 rgba(0,0,0,.04), 0 12px 32px -18px rgba(0,0,0,.28);
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg:#0b0b0d; --surface:#17171b; --surface-line:#2a2a30; --ink:#f4f4f5;
+    --ink-soft:#b3b3ba; --ink-faint:#7d7d86; --red:#ff3b30; --yellow:#ffd600;
+    --field-border:#3a3a42; --shadow:0 1px 0 rgba(255,255,255,.03), 0 18px 40px -20px rgba(0,0,0,.7);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+  }
+
+  /* ---------- Hero ---------- */
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand .mark { width: 44px; height: 44px; display: block; border-radius: 11px; box-shadow: var(--shadow); }
+  .brand h1, .brand .wordmark { font-size: clamp(28px, 8vw, 38px); font-weight: 900; letter-spacing: -.03em; margin: 0; }
+  .tagline {
+    font-weight: 900;
+    letter-spacing: -.02em;
+    color: var(--red);
+    font-size: clamp(30px, 9vw, 46px);
+    line-height: 1.02;
+    margin: 26px 0 8px;
+    text-wrap: balance;
+  }
+  .sub { color: var(--ink-soft); font-size: 16px; margin: 0 0 4px; max-width: 42ch; }
+
+  /* ---------- Card / form ---------- */
+  .card {
+    background: var(--surface);
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 26px;
+    box-shadow: var(--shadow);
+  }
+  form { display: flex; flex-direction: column; gap: 18px; }
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  label.lab { font-size: 14px; font-weight: 800; letter-spacing: .01em; }
+  .hint { font-size: 12px; color: var(--ink-soft); line-height: 1.45; margin: 0; }
+  input[type="text"] {
+    font: inherit;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--bg);
+    border: 2px solid var(--field-border);
+    border-radius: 11px;
+    padding: 13px 14px;
+    width: 100%;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  input[type="text"]::placeholder { color: var(--ink-faint); }
+  input[type="text"]:focus-visible {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 22%, transparent);
+  }
+
+  /* segmented */
+  .seg { display: flex; gap: 10px; }
+  .seg button {
+    flex: 1; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer;
+    color: var(--ink); background: var(--bg);
+    border: 2px solid var(--field-border); border-radius: 11px; padding: 12px 4px;
+    transition: background .12s ease, transform .05s ease;
+  }
+  .seg button[aria-pressed="true"] { background: var(--yellow); color: #0a0a0a; border-color: var(--yellow); }
+  .seg button:active { transform: translateY(1px); }
+
+  /* apr checkbox */
+  .check { display: flex; align-items: center; gap: 11px; cursor: pointer; user-select: none; }
+  .check .box {
+    width: 24px; height: 24px; border: 2px solid var(--field-border); border-radius: 7px;
+    display: grid; place-items: center; flex: none; color: #0a0a0a; font-weight: 900; font-size: 15px;
+  }
+  .check input { position: absolute; opacity: 0; pointer-events: none; }
+  .check input:checked + .box { background: var(--yellow); border-color: var(--yellow); }
+  .check input:not(:checked) + .box::after { content: ""; }
+  .check input:checked + .box::after { content: "✓"; }
+  .check input:focus-visible + .box { box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 22%, transparent); }
+  .check .txt { font-size: 15px; font-weight: 600; }
+
+  .cta {
+    font: inherit; font-weight: 900; font-size: 18px; letter-spacing: -.01em; cursor: pointer;
+    color: #0a0a0a; background: var(--yellow);
+    border: none; border-radius: 13px; padding: 16px; margin-top: 2px;
+    transition: transform .05s ease, filter .15s ease;
+  }
+  .cta:hover { filter: brightness(.96); }
+  .cta:active { transform: translateY(1px); }
+  .cta:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+  .err { color: var(--red); font-weight: 700; font-size: 14px; margin: 0; display: none; }
+  .err.show { display: block; }
+
+  /* ---------- Results ---------- */
+  #result { margin-top: 26px; }
+  #result[hidden] { display: none; }
+  .reveal { animation: rise .45s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .row {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--surface-line);
+  }
+  .row .k { font-size: 15px; color: var(--ink); }
+  .row .v {
+    font-size: 17px; font-weight: 900; letter-spacing: -.01em;
+    font-variant-numeric: tabular-nums;
+    background: var(--yellow); color: #0a0a0a;
+    padding: 5px 11px; border-radius: 8px; white-space: nowrap;
+  }
+  .smallnote { font-size: 12px; color: var(--ink-soft); margin: 8px 0 0; line-height: 1.45; }
+
+  .ti { text-align: center; margin: 30px 0 8px; }
+  .ti .lab { font-size: 15px; font-weight: 900; letter-spacing: .02em; text-transform: uppercase; }
+  .ti .big {
+    color: var(--red); font-weight: 900; letter-spacing: -.04em;
+    font-size: clamp(56px, 18vw, 92px); line-height: 1; margin: 6px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .ti .cap { font-size: 14px; color: var(--ink); }
+
+  .split { margin-top: 24px; }
+  .split .h { font-size: 13px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 10px; }
+  .splitbar { display: flex; height: 24px; border-radius: 12px; overflow: hidden; background: var(--surface-line); }
+  .splitbar span { display: block; height: 100%; transition: width .5s cubic-bezier(.2,.7,.2,1); }
+  .seg-borrow { background: var(--ink); }
+  .seg-interest { background: var(--red); }
+  .splitlegend { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 11px; font-size: 13px; color: var(--ink-soft); }
+  .dot { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
+  .dot.borrow { background: var(--ink); }
+  .dot.interest { background: var(--red); }
+  .splitlegend b { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+  .splitline { margin: 13px 0 0; font-size: 15px; line-height: 1.5; }
+  .splitline b { font-weight: 900; color: var(--red); font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { .splitbar span { transition: none; } }
+
+  .reality {
+    background: var(--surface); border-radius: 16px; padding: 18px; margin-top: 26px;
+    box-shadow: var(--shadow);
+  }
+  .reality h3 { margin: 0 0 12px; font-size: 18px; font-weight: 900; }
+  .reality p { margin: 0 0 6px; font-size: 15px; }
+  .reality b { font-weight: 900; font-variant-numeric: tabular-nums; }
+  .badge {
+    display: inline-block; margin: 12px 0; padding: 7px 14px; border-radius: 9px;
+    font-size: 14px; font-weight: 900; border: 2px solid transparent;
+  }
+  .badge.high { background: var(--red); color: #fff; }
+  .badge.medium { background: var(--yellow); color: #0a0a0a; }
+  .badge.low { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .reality .note { font-size: 12px; color: var(--ink-soft); line-height: 1.5; margin: 4px 0 0; }
+
+  /* ---------- App CTA + footer ---------- */
+  .appcta {
+    margin-top: 30px; text-align: center; border: 2px solid var(--field-border);
+    border-radius: 16px; padding: 22px 18px;
+  }
+  .appcta h3 { margin: 0 0 6px; font-size: 20px; font-weight: 900; letter-spacing: -.02em; }
+  .appcta p { margin: 0 0 14px; font-size: 14px; color: var(--ink-soft); }
+  .appcta a {
+    display: inline-block; text-decoration: none; font-weight: 900; font-size: 16px;
+    background: #0a0a0a; color: #fff; padding: 13px 22px; border-radius: 12px;
+  }
+  @media (prefers-color-scheme: dark) { .appcta a { background: #fff; color: #0a0a0a; } }
+  :root[data-theme="dark"] .appcta a { background: #fff; color: #0a0a0a; }
+  :root[data-theme="light"] .appcta a { background: #0a0a0a; color: #fff; }
+
+  .disclaimer {
+    margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--surface-line);
+    font-size: 12px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .foot { margin-top: 18px; font-size: 12px; color: var(--ink-faint); text-align: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; }
+    * { scroll-behavior: auto; }
+  }
+  .eyebrow{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:24px 0 0;}
+  h1.tagline{margin:8px 0 8px;}
+  .content{margin-top:44px;}
+  .content h2{font-size:22px;font-weight:900;letter-spacing:-.02em;margin:26px 0 8px;text-wrap:balance;}
+  .content h3{font-size:16px;font-weight:800;margin:0 0 4px;}
+  .content p{font-size:15px;color:var(--ink-soft);line-height:1.6;margin:0 0 10px;max-width:64ch;}
+  .content .faq{border-top:1px solid var(--surface-line);padding-top:12px;margin-top:12px;}</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <img class="mark" alt="True Interest app icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABqYSURBVHhe7Z0JfBRF9sc7M8kcuTO55sg9BJTLE1dd9bPgegsr67quuq78XZd1FdTFA1kFxDOKKN6IAnLfhNwnsNwih4hyy5HIDblnpruqXnX/P9U9CSGdO5N04ubz+X34hGSmpud9u6pevXr1mjuUGF2WYj2XHNurLlZZivVwUjRXmWKV+jqkVHuvulp9HdVOK3cuOVZKtUMfW6+6WFKq/UJKbC8AzdQLQGP1AtBYvQA0Vi8AjdULQGP1AtBYvQA0Vi8AjdULQGP1AtBYPRxAcgxYgyHSyBQdCAmRDV/Q7dUzAaTaITEKLEaSasd/GUGmTCBvT8L/HEWu7cdIOMIbvr4bqwcCSIiECAO5PAG98hw+sBdLEpHFfrhwBn31Gdx8NVgMYAtt+MZuqR4FIN4CFgMZlExenyAcP4oVoxNEsCALKRiQqwovnE1u/y1EmSA2GJzWhu10J/UQAHEREBFArrkMTXtbOFVKJAlJUq3dVRIpewEW0Oql+L7bGYOYwG6LodsDcISBxYBvvIJ8+gEpPycPOCImHqy2+6XCFBgkSURr8/EjI8EeCtFmSIlt2L7W6sYAbKEQaSS3XItnfY6qKrAkgXzXM+sTj9rijQswG5QkiWxeRx57kA1ikSbmO6k/TiN1SwDWEGb6227Ai+eAy8XsLokYIzbKM7PyslS2blKIAFamB2HHNvzUKEiMZM5SUgz00f4rdycATitYg0m0mdx1C16+AGEPM71I2mjupkUwkiRBktCPu/C4p4kzFixGSIpmTq36YrpK3QOA0wqxwSQmkAwfhjJWEEBUkrCIfGb6S+R1lvgDP+LxYyHVxnxW7TBoDYCZPghizGTkHTh3NRGBOfUUA1LGmc4AoMiLAR/eTyY8y6wfYWCLuy43gnYAnFaICYLYIPLHO0leJpaY70goUVmqc6VM0ejoQTTpJXJ5Qtdj0AKA08riNtZg9NBwYU2u1/RACGponS6TsqYTjh9Fk16WMQR0GYauBaDc9dZg8pfhqDjPu5SlCDpxqGmVQP7Xi6HkKJk0nlwez+aGzsfQVQBk05PYYPzgcGFdgRLAAejqAacpUSRAXf9TBqWSI2jyeNYbOhlD5wPwTrOB+M/34jX5SuCMEKy2goai6FIGGIGC4fhRNFmeGzrNU+pMAIrpY4PIyDtxfrYgL2Up6S53fX0pAKhqEvJO0SVH0KTx0NfeGRg6B0DtXc+cy4IsLInyNNu97vrmBTIPjD2EeLAkMgyH98P4Z6CPlS3fkn2GoRMAxAZDdCC57w6cm9ETTa8IvN2CB8QrPoIyb+FD+8iLY0hKLAtmJMd0HINPAVhDINpM/nAbW1JJ8pIK6oL1PUy1AGqnB+/vkXdQ2vcTGfsEJFjYlkPHAt0+ApBiZdPs8KE4O53Ifj2wu76LnUsfw4Z6qv97LGNgztL3O8joR1mgOym6oUFaLR8BsAbjdych72rWx4a4KIKAApUkRaAEqBWPtvZfSf6TqPyGgs+p1AnkYIYgSXjuTLYL3d5+4AsAthBy/92yIUT1hXZcIFLFpsysNdWe0kNVu4trsufVfP2h+71J+JXn+QnPVL0xhp/8vOuDSWdXTi0vnufavQ4dP0RqarzvkiRgMBq23HGxZiWJ/O1PbOZTW6YV8gUAiwFNeYVtmFzcnvWFABTzkYpK1851J5a/ceK1Px54tv+up4IPjNCdGMId+w23byh38GbuwFBu763ciUHsN98+zG0fxf3wEHfwwYh9L/Q/9sH951dOE77/Fnvcotw56u0h+0iSRCa+wFwjtWVaIV8AsIfi4bcLymigvr62CygVJQkhoWx33tFZjx94wbnnUe67J7gdT3I7n+d2vcTtfJbb/qJu55spe6deeWTqjcfe+93Bj2858v6NB9Ou2vt2nz0v63c+x+14ids+jvv2ae67x7jvH9EdHDugZN54175tyvDlq5UgC13wNXDLNWzXWm2ZVsgXAJjrGUQmjEOCfDtQqr7Q1oogSZKwx3W2+Ms9aVduf4bbOZbb8zK3dxJ3cIru57f0x981HH+LOz7n9sqSbQJfSRAvEVGkkihKIhEBYSy4K0q+LZk1pDSNO/KO/tAUvx8ncjsmcN+N5baM5nb8Q1868d6qrbmiKGNQX0DrJbtD/C+l6LEH2j3++A4AC3Ca0bDr0YolLKTcLgeUrZMlqWJr+oHJg3aMYXbfP8XvWJr/yQ/8T3/sf+4zfdkM//IvdOe/juIrf2EjOyUAiN3LdQIC8sDlObOtbIZ/2Qy/C5/5n/lIf2Kq7sg7fgemcD/8h9v+JLfzYe74ayM8h39gjbR9jQLy4gafPoXenkwGJLLIbge2Nn0EQJG8jY7vGebJz8LK7NfqAZdKEqquLPny77vHcPte4Y6l+Z2c7n/uc33F17rqOTrXXH/3PH9+gT8/l6tc3h8JbgJUdnMb2Z0HUfJU/lLxTZgwjxPm+vNz9K6v9eVf6s58qit5X3fwdb/dE7htT3MH/xxaufxz5k15m2rYjloAIkgSX3ZWeD8NBjlZ1DohsoNrMZ8CUGQNZr3hoZFo8wZV7lTjAknynD66/42rfxzHHU3jznymr/ha7/7GDy/yx0sDyDJ/ujwAVhpghZEu5iqWXob4agDFq2nEcEAld9mRqvnhZDFHF+vpEj1ZpOMX6FxzdRVf+5391K90qv7Q6/pdL3Df/Y07O/NFUWx5ra54Yh6hsjpvOrrmcp+YXlEnAKjdciG2UDT6UbRnlzcCqvpWsnj2xU4e3z8l9dB/uHMf+1XN9nMv0ONlBrrKQNNNOCsIZwdCTiDOCSRZQbCMK1/arx6ARlQLIIwu4+hKg5hupCsNsDKALPdHi3XueX6VX+nOfqIrfVe/dyK37W/c6aWvS+zyGr1LeCKylQf21FRs//TkAmfFWE60RoLTZ7bqHACKWMDERJKi+BfGCocPeZM4GxoLkKvm57Rrf57IVczQe+bq0FI9XR0AmWbICYK8EJwXigrCcFE4FIRBbjAs58qW9RX4amh6qgdRcpcdrVwQBis5WG0SswLFrECaaaKZBkj3h2V6tFDn/kZfOVN/8kP/va9x2/+hq9y7WT0ns5FJkojgcc3+2n3bkKp3uOr5nOfNUJroAKfqy7ZXnQlASWNOjmEJnakO/rWX8YkTtes1NnQASxORSpeNOfoqV/6VP78wgC430Ewj5JpxXggpiIBCCy2KgCILFEdCQUQtgFSBrybN9ID6ADJMNDtQzAmi2WaSbYIsI003wgoDWaoXFuiqv/I/N92w7wVu34x7L9mlUPKIANzLF/PDfgOhBkgJ98w04lwdmRYOCT0IgKJUOyRFsZTmgSnuae/wF87LUQQ2qlYc3Xr4TX3VTD+8xEBWGWmWUcwLoYXhtDCCFEVAsYWuiVQExdE0N1hcypUvsPHN9gBCJVfZ4epZHBuCskw0N4jmmSHbpAhnGSCDdQW8QicsCqia7X96ut+P/wlynT7MrgqQKAcYqnMz0N1DIdJEbaGQbCOD7GRRIFlvJNMjeiAARal2ObM8wH3N5ec+me52sTjBsfkjzn3CoeU6mm4QswPFvCBaGAZF4VDP+uJai1gUBPl6UhAkFFxWueV5hARoZmMHwO06X7XxX6hoIMo2QgZHcziaY6I5DAPJNpEsE+tnGQGwUo+X6Ktn6Y5M4cr25Uqya3+mKO/cfXfjaDO11nr3STYYbMergsgmI/mk5wJQlGqn8RFCWMD5228sLXjn5Bch/GKOZhggJ4gUhEBhGC2SARQrAKJokQkKdfymQfzBCULZVoxYpiI0v45FAgYWKSMCz5//1n3gVc/6wWQ1J2ZyVOkHCoAsI8kw0BX+wgL9iQ+4c4cyT23bdvih+6tigmhMIK0fXFMArAwmm0wyAHtPBiCLJtuI03LqLc7FrG+U8oKhIEg2fRgpZqJrLeKaEFyg4zcO9pR8TvgLbO1KFZ+9Lkm0GckvIEBEeRcF1XhKF3k2/Banc5RhMNZiMMMqI16ur1pg2DNqyClrDESbRXVc09sDQsgmM/k48tcAAJLYqOr6xkCyAqTcYLEglBaFyCNPOFkTTtdYxCITLgrlD07CQhVhO8lQtzPVDgFha1dEwH1sLl+YAukczTZAtplmmCDTiFfr0coAfFO4ZG8ieV0GQNJDGYBPfi0AYLADLQ2m+WaxIBiKQmlRmDzrRsoOj57f0F84v1aeFRt6h+0XYaFj5D7r2fVPnCF3hUwjzTRBhr+QZeRHWKlDdZ11VzvIBqtCYWMgAxD36wBwhQOnh8OaYCgMoQqA4jAotkC+jt94teA6Jp8GaHGoaat4oGxQcpfMF7LC5K5gErMMON9Q8ycrtauuU1G8DS6LQ+nhZKOZfB4FsQ5IUb2mvdIOwGAHWW2h60KhMJQWKgDCab6OXz/I4/6FilK7B5xWiE3RnrJt7vwUMZ0Tsw2o0OC6vwkAKTZwOtA7NlIcSPIDcVEo/reddQL1K9sl7QBc4cAZFrIuhBYxz4fNwIUmoTCWr9itXjA3KhYNVYL79bcnW4rqXAzhSRJfdchT0A8yOFRk9oxsAoDNjp+wkm2BNC9QXpwHo01h5B47NDVetVFaAkAZEWQdu/dlhZIcP9eRGbL1Wxp5ZFu7CXEdPVyzdSNZW8ivK/J8vx2dOaWE/5odvi7GUKko8RWH+IJEyOHQCBs0CsDu4KdGwgYTzTVDDotKkc0G/O9oiPWNubQDMFjpAcoQFEbz9fymmxEgIE3GGGR/hmUk1JwsqZr6VvntN1f3jfM4wsEagqwhQmIUvqJP9cg7q6e/j34+1HQE8JIgNgvEnt/qKQxDIyLA3pgFrHZhvBVvNUGOGXLNkGtEmwPxI3FgU72yXdIQgB2tlntAQTAtDCbZnKdkYRMm8woTtgXoWbkIDUjCYXrRHiomR7MVk9NKnVaaEksTo9jyNSIAp9rxM6PxPvkYt9ggaNFwFwEkyX1irnBbOHU05oYm2sg1cXhBFCkwQq4JikzC9BiSGuereVhjALAulLmh+f6utanIUwmk6QgPFtgW4MI5EBFA48JbiMUnRbMIYIpVeO8NJJu4GQDK2TH+seE0prGdxVQbjbJ5HojHawNpvlEoDEW3JFCrlZ1tUr+47dIQgAOtjqDFIbQgmKzmXNv/3vztT0QRlxzH/eJbu/2tRADD/NG9w4Qjh+s1fgkAigRRknhJwnf9DuxhDRth9UBspK9DmBNGCw2QG0j+a8LvxoDDZ+EgjQAk28hlDrIkmq0D8kxoJefZ/+ml96lKkoRnfArh/i3c+w1lp1EmPDAZb14vM6h/9IxXkvhQTRWaMK7J2hI2O37ASjaaxBwzzQuk+SZcGEJuimOLA/WL2y6NADhtkODAM6LIejPNM6IVHH88u3kAbPR/5UWWEqturXml2sEWSpKihXVFctCf7UMobqtQXcXPnoF+e2VzKZ42O54SRTcYxFzmidK8ILrRTEZbweobc2kEQPYu0MQYvCUQ8oyeRZyrZGMzAFiCpiShD9NYD2hHCkKqHRxhJDkWry2U6xdI6ESJ8NH7+IYrwGKgzZS3YauwOGFOGBQbaI5ZEaw3kbSoxl2mtks7ADY7ftiKt5ghO8C9gKspXd8MACZJRD/tJvEWds5d3VqLSrVDXARJteGn/46fHIUHO9lpixanE8UFygin+UYxxwxZbDsBik14Xjj08U1AQjsASTZyVRxeHQI5Os98znUsvRkAcooyYofcP58OYXpW8qEdV6vsj0abWSZPYlTDvzYqh40Mt8GaQCnbJGabSZaZZJtJvhFlhpAhdkhUvb7t0g4AG4UcaEo0Wat3zebKd05vBoAiLFfewLNnkFSb9ySpuk3fymono2PIOqMcNzVCJttFINkGvDaINLVybqM0BRBnI79z4NxA9xzuTPbDzcYPaiUzEH4+iF8cA/2T2DBiDenEIjQ2O54YRdYaQAYgMzCSLCNeb8L/ivHJPKwpADnSIkyMEdK5C7PjBNcFecNLZXS15Bgc/qWUzPiE/OE2IidesATNDhyUaEROGyQ60KdhUOAvZ7WYIcPE0iwyjbAmAE2OBpuj4VvaLo0B0EQrHhyP54dWzuDO75rFktHV5m5M7NSKUqBMEsm+H8hnH5IHhrPT1VEmpnhLk25l65Vsg8vtZH4QzfWnGSaaUQsgw0QLAvAnkZAY1/HlmMYA2ILeZiN3x9Us0pXOvUJAQjMpb40LsBKIRpKEj/2Mly2CMf8gNwxWSm11qFsk2Mh1NpJhFrMC6GojXW1SBOlGyPGHuSHQ1wcRIa0ByKI2O/6r7eyX3Nkt0+QMtRZj+g3FOgSRMyFk4eoKsmU9nvY26xYDkpnnE2ViZ+pUH92ckm3Q1yHMtZD1esg30EIjLQiAAj3k6/EmI54aDfE+CEh0CwDgtFGbAz0c88sXoVWntsiZmg1N3DbJdfu8BWl+KcHpy8mz/4Qh/ZkDygr4tXrSTrDhG+z85BjP1EhPWqSQFsGnRXjejeTHx5ArfwVuaH05bdTh4G8LL/0otbrmgDpTs50iLMnQC6PsAslYRf76AAu6RQe26uZNZQzA5iDxDhLnFcQ5mP+TJP9V/ZY2qtsAkCU67GhA8NlXr6iu+IGN7C3ltbdJSl0ctkOweQN5eKR3rm7lt24NrXapewGQ/SI7tYdU35Vcs26JN6G67YdtmpM8VbChacl8GJjIyudo+sW7HQAmp120WnBcsPDUX9Gend4xpOXd9rZIzn9GR/bjO25mhSy1++7dEoCiFCszTVIU/tcovGWz97CNr+YGuRwHa62yHEb8ng1HGn39bgyASQ6fRZnAEY5G3oXmzcKnTniLPflqhpAkVH6BDB3CVgxaWKCbA6iVM1Z5TgAelIJGP4pXLCInjrOVl6IOThKShH76nhVAafeSrQPqIQDqlBilrKrIgCT8yP3oq8+Fn37A1OtrYlblVWXfloVYQdf33mArZ/UndrJ6GoA6JUUzB4alPsTgu4fityfhLeuR4GrlucyGkkRcfo5c3a/rn8HRbQCw2Fm7wmcpMWw/3WIgjnAy9Do0ZYLw/Y7a6boNGBi5yePbs+fcMWkNQE4eoVFmZsTYoA7VJ3RaWdkYi4HEW9Ajf+K/28S2f1tfCVaS8Ob/shBex8OobZF2AGoPUEK/eOHVF4QNa9H8b0j/BLZP28ErSYmlUSZiDxXSXmM101oXXmWF4coukCH9u3gU0g4Ae+iRhTw/Bh05JMipUcyrKcxi3k7HD6GzjhUNIX78a+NZP2jNlAAEixK57w6whTRsrTOlBYCUWFZa7i/3Cbu+9a5ymQmQkvqJFs8lMR0bi2pFk2NQbBC/bUPdbjNGPGZlwdnPDetYKCGK/3uIze2qpjpPXQ7AaYW4cPzZNG9Apt4zGTDikTIZzp7BfM2O94M+bO9eeJMVk1ImZAVAHQM1AP7JUTQmsGEjnakuB2ANxg/+AUkSiGxoVmxRZxeMeAAsSJKwcA6blh1hHWUQaULjnpIBXOwB9VUHABOWLkcefYD5Aup2Ok1dDYDGBqOH/8jLhXrqm+ASu8iHAHBhLhmYxMJBqkZaq1Q7hPujD9+pH0Fq1PpMgNl0ffdQVgVR3VSnqasBQEosSYzEWzcqRmkUgDwgyNXAjh3Gf76HpQC1zzVKiiLxkegnuVxLiwAkCZ0+RQY7uyLdqJ66HECqHawh+NbreU8NKz3V2CikSMl7ECQqfDOTXHs5hAdAXNNJnOpPkb0g9MFbzLmqN982AHCRhCShNfnE2tUPfutyAIp1IgLQhOfYjUkwUZm+3u3JE0pZpdqys3j6u+TGq7zb6/ERTSZjOa1s9mZ5n+HCNNn6rHhovbG+Xp+rD4A5YOPGsMbVbXamtABQW0qIXzibBZabvj0VgVKcUJKEmiqUvYqMfYLceCVL0Y02sWKRkSaIkqmwn43Mi7+6H3l2NN69o24lrEarfOjF30giPn0CD0jq4vFHOwDyMzlRgkVYly/HzpoDUPsnDxZZBSV2U1dV4l07yLL5+IO3WH3/Z0bjF5/Bb00mX32B/ltELpxRzq5i2bVtVA0aZ9HQ11/5H4uGptqpIxyn2tzbNtVlhTZjo0ssKAJWshMVHkpB7do8FCJRivlmRraGjUsSv2cnSYr639sPSLWDPYyk2oV1RRcL7zZhpmbYqKOeWFaj72IHXeX/suLP7JSSxLuq0O9voP+jO2JyPyCJUfyyecotzACoCpY3aspm1OBlTbyLrbwwgDDqQTZ/aPL1tQeg9IOESBIdKEx8CQny4wtrZ0i1TZswZeNqGO25VGxid9UIjz9EtRj669QNAChKiWUHrO+6Rdi+1Tus187MjUpt3PpsmufEoiCSJOzfK9x5iyYTb311GwBKV4gNJgkW4ZVx6GSpN/sBI/VwVN/o9X9uEQAr9Sc/67nmi+moXxyLu2n9rbsTgHq7NGRgsvDmRP6ofMCaSaxzVRu1eAsA5DQsdi6VFzzpi4Xbb8IRBuqTaGuH1c0AKFLqK1oMpG8ceupxlJcplJ+vK4NCJXaKRj1DXIKHhTZZnWdv0JsC2vcj/ug9ftj1OFquRKn+UI3ULQHUKSmarXJjAvGQAeipx4VvZgq7tgtlF5rf4QIs8Bi5z55BP/6AVi1Gk8bje4axtB92JLixYgSaqnsDqFOChUWBIo0QG3Tqnlt5wdPcbrskVuZkVjptkBxDlHfZQ1nyhLrZbqAeAqBW1BbquukqxHsIhSYdU0kSF8wWQ3VNBuy6k3oYAHCEi8OuJ4JbfkKSauivBUCWzOv6uGb71PMAwLDrMF+jAGhU7BkLKxcR9mAL1du7n3oggFtvIIRvBgDrASsW9vaAzlFCJL76MlRdoa5rwOpJyM8cZDGGLz/u+iTD9qmnAZAfFnr61Zd47wLtopQSlkiSXId+cl83kMa38VCqRuqBAJxWwRrC339P+bQ097xZsGweLJtPls8nS+fyc2ZWv/ycZ2Ay8/d7yNfpgQD62CjzR0OwxUDYfqQieVcy0kijTNQXWXVdph4J4NekXgAaqxeAxuoFoLF6AWisXgAaqxeAxuoFoLF6AWisXgAaqxeAxuoFoLF6AWisXgAaywugMsUq9XVIqfZedbX6OqqdVu5wYnS503ohJbZXXaxyp/VIUvT/Awhpc1K/kJsWAAAAAElFTkSuQmCC" />
+      <span class="wordmark">True Interest</span>
+    </div>
+    <p class="eyebrow">Free student loan true-cost calculator</p><h1 class="tagline">Don't sign blind.<br>See the real cost of your student loan.</h1>
+    <p class="sub">Most loan offers show you a monthly payment — not the total you'll actually pay back. Enter your loan and see the truth in seconds.</p>
+  </header>
+
+  <div class="card">
+    <form id="loanForm" novalidate>
+      <div class="field">
+        <label class="lab" for="principal">Amount you borrow</label>
+        <input type="text" id="principal" inputmode="decimal" placeholder="e.g. 40000" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label class="lab" for="rate" id="rateLab">Interest rate (%)</label>
+        <input type="text" id="rate" inputmode="decimal" placeholder="e.g. 6.39" autocomplete="off">
+        <label class="check">
+          <input type="checkbox" id="isApr">
+          <span class="box"></span>
+          <span class="txt">This rate is an APR</span>
+        </label>
+        <p class="hint" id="aprNote" hidden>APR may include fees. If your document shows a separate interest rate, use the interest rate for payment estimates.</p>
+      </div>
+
+      <div class="field">
+        <label class="lab" for="years">Repayment years</label>
+        <input type="text" id="years" inputmode="numeric" placeholder="10" value="10" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <span class="lab">Interest builds while you're in school?</span>
+        <div class="seg" id="school" role="group" aria-label="Interest builds while you're in school?">
+          <button type="button" data-v="yes" aria-pressed="false">Yes</button>
+          <button type="button" data-v="no" aria-pressed="false">No</button>
+          <button type="button" data-v="unknown" aria-pressed="true">Unknown</button>
+        </div>
+        <p class="hint" id="unknownNote">Interest timing is unknown. If interest builds while you're in school, your actual cost may be higher.</p>
+      </div>
+
+      <div class="field" id="schoolYearsField" hidden>
+        <label class="lab" for="schoolYears">Years in school (1–6)</label>
+        <input type="text" id="schoolYears" inputmode="numeric" placeholder="e.g. 4" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label class="lab" for="fee">Loan fee (optional)</label>
+        <input type="text" id="fee" inputmode="decimal" placeholder="Leave blank if none" autocomplete="off">
+      </div>
+
+      <p class="err" id="err" role="alert"></p>
+      <button type="submit" class="cta">Show my real cost</button>
+    </form>
+  </div>
+
+  <section id="result" hidden aria-live="polite">
+    <div class="row"><span class="k">Amount you borrow</span><span class="v" id="rBorrow"></span></div>
+    <div class="row"><span class="k">Estimated monthly payment</span><span class="v" id="rMonthly"></span></div>
+    <div class="row"><span class="k">Estimated total paid</span><span class="v" id="rTotal"></span></div>
+    <div id="feeBlock" hidden>
+      <div class="row"><span class="k">You actually receive (after fee)</span><span class="v" id="rNet"></span></div>
+      <p class="smallnote">You may receive less than you borrow because of the loan fee.</p>
+    </div>
+
+    <div class="ti">
+      <div class="lab">True Interest (estimated)</div>
+      <div class="big" id="rTrue">$0</div>
+      <div class="cap">That's the extra money on top of what you borrow.</div>
+    </div>
+    <p class="smallnote" id="capNote" hidden>This is a simplified estimate for interest that builds while you're in school. Your loan servicer may calculate it differently, and your real cost may be higher.</p>
+
+    <div class="split">
+      <p class="h">Where your money goes</p>
+      <div class="splitbar" aria-hidden="true">
+        <span class="seg-borrow" id="segBorrow"></span>
+        <span class="seg-interest" id="segInterest"></span>
+      </div>
+      <div class="splitlegend">
+        <span><i class="dot borrow"></i>Borrowed <b id="sBorrow"></b></span>
+        <span><i class="dot interest"></i>Interest <b id="sInterest"></b></span>
+      </div>
+      <p class="splitline"><b id="sPct"></b> of everything you pay back is interest — you repay <b id="sPerDollar"></b> for every $1 you borrow.</p>
+    </div>
+
+    <div class="reality">
+      <h3>Reality Check</h3>
+      <p>Your estimated payment: <b id="rcPay"></b>/month</p>
+      <p>Typical U.S. full-time pay: about <b>$5,342</b>/month before taxes</p>
+      <p>Your payment is: <b id="rcPct"></b> of that</p>
+      <span class="badge" id="rcBadge"></span>
+      <p class="note">This is compared to pay BEFORE taxes. Your real take-home pay is lower, so your payment takes a bigger bite than this number shows. This also doesn't include rent, food, car payments, or health insurance.</p>
+    </div>
+  </section>
+
+  <div class="appcta">
+    <h3>Want the full picture?</h3>
+    <p>Scan your real loan document, get a plain-English breakdown, and export a PDF — in the iPhone app.</p>
+    <a href="https://apps.apple.com/app/id6782334610" target="_blank" rel="noopener">Get True Interest on the App Store</a>
+  </div>
+
+    <section class="content">
+    <h2>What is True Interest?</h2>
+    <p>True Interest is a free student loan calculator that shows the real cost of borrowing, not just the monthly payment. Most loan offers highlight a low monthly number, but over 10 or 20 years the interest can add up to more than you originally borrowed. This tool does the math instantly so you can see the total you will actually pay back before you sign.</p>
+    <h2>How the student loan cost calculator works</h2>
+    <p>Enter your loan amount, interest rate, and repayment term. True Interest uses standard loan amortization, the same formula lenders use, to estimate your monthly payment, total amount paid, and the extra cost from interest. The Reality Check compares your payment to typical U.S. full-time pay so you can see how big a bite it takes.</p>
+    <p>Every number is a clear estimate for education only. It is not financial, legal, tax, or loan servicing advice; always confirm with your school, lender, or loan servicer before signing.</p>
+    <h2>Frequently asked questions</h2>
+    <div class="faq"><h3>How much will my student loan really cost?</h3><p>It depends on your loan amount, interest rate, and repayment term. Enter them above and True Interest shows your estimated total paid and how much of it is interest.</p></div>
+    <div class="faq"><h3>Is this student loan calculator free?</h3><p>Yes. The web calculator is completely free. The iPhone app adds document scanning and a full plain-English report as an optional one-time purchase.</p></div>
+    <div class="faq"><h3>Does it work for private and federal student loans?</h3><p>Yes. It works for any fixed-rate loan where you know the amount, rate, and term, private or federal. For loans with changing rates or staged payments, treat the result as a simplified estimate.</p></div>
+    <div class="faq"><h3>What does True Interest mean?</h3><p>True Interest is the extra money you pay on top of what you borrow, the total interest over the life of the loan. It is the number most loan offers do not show you up front.</p></div>
+  </section>
+  <p class="disclaimer">True Interest is an educational tool. This is an estimate, not financial, legal, tax, or loan servicing advice. Check with your school, lender, or loan servicer before signing. Typical pay is the U.S. median for full-time workers (Bureau of Labor Statistics), before taxes.</p>
+  <p class="foot">© 2026 True Interest</p>
+</div>
+
+<script>
+  "use strict";
+  var TYPICAL_MONTHLY_PAY = 5342;
+  var MAX_RATE = 0.5, MIN_YEARS = 1, MAX_YEARS = 30, MIN_SCHOOL = 1, MAX_SCHOOL = 6;
+
+  var usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  function round2(v) { return Math.round((v + Number.EPSILON) * 100) / 100; }
+  function parseNum(s) {
+    var cleaned = String(s == null ? "" : s).replace(/[$,\s%]/g, "");
+    if (cleaned === "") return NaN;
+    return Number(cleaned);
+  }
+  function pct(ratio) { return (ratio * 100).toFixed(1) + "%"; }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var school = "unknown";
+
+  // segmented control
+  Array.prototype.forEach.call(document.querySelectorAll("#school button"), function (b) {
+    b.addEventListener("click", function () {
+      school = b.getAttribute("data-v");
+      Array.prototype.forEach.call(document.querySelectorAll("#school button"), function (x) {
+        x.setAttribute("aria-pressed", x === b ? "true" : "false");
+      });
+      $("schoolYearsField").hidden = school !== "yes";
+      $("unknownNote").hidden = school !== "unknown";
+      if (!$("result").hidden) compute();
+    });
+  });
+  $("unknownNote").hidden = false;
+
+  $("isApr").addEventListener("change", function () {
+    $("rateLab").textContent = this.checked ? "APR (%)" : "Interest rate (%)";
+    $("aprNote").hidden = !this.checked;
+    if (!$("result").hidden) compute();
+  });
+
+  // recompute live once results are shown
+  ["principal", "rate", "years", "schoolYears", "fee"].forEach(function (id) {
+    $(id).addEventListener("input", function () { if (!$("result").hidden) compute(); });
+  });
+
+  function validate(inp) {
+    if (!isFinite(inp.principal) || inp.principal <= 0)
+      return "Please enter how much you borrow (a number greater than 0).";
+    if (!isFinite(inp.rate) || inp.rate < 0)
+      return "Please enter a valid interest rate.";
+    if (inp.rate > MAX_RATE)
+      return "That interest rate looks high. Can you double-check it?";
+    if (!isFinite(inp.years) || inp.years < MIN_YEARS || inp.years > MAX_YEARS)
+      return "Please enter repayment years between 1 and 30.";
+    if (inp.school === "yes") {
+      if (!isFinite(inp.schoolYears) || inp.schoolYears < MIN_SCHOOL || inp.schoolYears > MAX_SCHOOL)
+        return "Please enter your years in school (1-6).";
+    }
+    return null;
+  }
+
+  function monthlyPayment(P, rate, years) {
+    var n = years * 12;
+    if (rate === 0) return round2(P / n);
+    var r = rate / 12;
+    var g = Math.pow(1 + r, n);
+    return round2((P * (r * g)) / (g - 1));
+  }
+
+  function animateNumber(el, target) {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.textContent = usd.format(target); return;
+    }
+    var start = performance.now(), dur = 450, from = 0;
+    function tick(now) {
+      var t = Math.min(1, (now - start) / dur);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = usd.format(Math.round(from + (target - from) * eased));
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function compute() {
+    var inp = {
+      principal: parseNum($("principal").value),
+      rate: (function () { var p = parseNum($("rate").value); return isFinite(p) ? p / 100 : NaN; })(),
+      years: parseNum($("years").value),
+      school: school,
+      schoolYears: $("schoolYears").value.trim() === "" ? NaN : parseNum($("schoolYears").value),
+      fee: $("fee").value.trim() === "" ? undefined : parseNum($("fee").value)
+    };
+
+    var msg = validate(inp);
+    var err = $("err");
+    if (msg) {
+      err.textContent = msg; err.classList.add("show");
+      $("result").hidden = true;
+      return false;
+    }
+    err.classList.remove("show");
+
+    var capInterest = (inp.school === "yes") ? round2(inp.principal * inp.rate * inp.schoolYears) : 0;
+    var effectivePrincipal = round2(inp.principal + capInterest);
+    var payment = monthlyPayment(effectivePrincipal, inp.rate, inp.years);
+    var n = inp.years * 12;
+    var totalPaid = round2(payment * n);
+    var totalInterest = round2(totalPaid - inp.principal);
+    var fee = (inp.fee !== undefined && isFinite(inp.fee)) ? round2(Math.max(0, inp.fee)) : 0;
+    var netDisbursement = round2(inp.principal - fee);
+    var riskPercent = payment / TYPICAL_MONTHLY_PAY;
+    var risk = riskPercent <= 0.08 ? "Low" : (riskPercent <= 0.15 ? "Medium" : "High");
+
+    var firstReveal = $("result").hidden;
+    $("result").hidden = false;
+    if (firstReveal) {
+      $("result").classList.remove("reveal");
+      void $("result").offsetWidth;
+      $("result").classList.add("reveal");
+    }
+
+    $("rBorrow").textContent = usd.format(inp.principal);
+    $("rMonthly").textContent = usd.format(payment) + "/mo";
+    $("rTotal").textContent = usd.format(totalPaid);
+
+    $("feeBlock").hidden = !(fee > 0);
+    if (fee > 0) $("rNet").textContent = usd.format(netDisbursement);
+
+    $("capNote").hidden = !(capInterest > 0);
+
+    if (firstReveal) animateNumber($("rTrue"), totalInterest);
+    else $("rTrue").textContent = usd.format(totalInterest);
+
+    // Cost split: how much of everything you repay is interest.
+    var interestShare = totalPaid > 0 ? totalInterest / totalPaid : 0;
+    $("segBorrow").style.width = (totalPaid > 0 ? (inp.principal / totalPaid) * 100 : 0) + "%";
+    $("segInterest").style.width = (interestShare * 100) + "%";
+    $("sBorrow").textContent = usd.format(inp.principal);
+    $("sInterest").textContent = usd.format(totalInterest);
+    $("sPct").textContent = Math.round(interestShare * 100) + "%";
+    $("sPerDollar").textContent = "$" + (inp.principal > 0 ? (totalPaid / inp.principal) : 0).toFixed(2);
+
+    $("rcPay").textContent = usd.format(payment);
+    $("rcPct").textContent = pct(riskPercent);
+    var badge = $("rcBadge");
+    badge.textContent = risk + " payment pressure";
+    badge.className = "badge " + risk.toLowerCase();
+
+    return true;
+  }
+
+  $("loanForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (compute() && $("result").hidden === false) {
+      // keep the shocking number in view on small screens
+      if (window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setTimeout(function () { $("rTrue").scrollIntoView({ behavior: "smooth", block: "center" }); }, 120);
+      }
+    }
+  });
+</script>
+
+</body></html>
